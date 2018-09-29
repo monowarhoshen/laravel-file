@@ -1,0 +1,8 @@
+#1 web.php page e 
+View::composer(['*'], function($view){
+    $settingview = \App\setting::first();
+    $view->with('settingview',$settingview);
+});
+
+#2 pp.blade.php page e
+{{$settingview->name}}
