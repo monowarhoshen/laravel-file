@@ -1,0 +1,28 @@
+#1make 503.blade.php page
+  views/errors/503.blade.php
+#2 web.php page
+  Route::get('notfound', ['as' => 'notfound' , 'uses' =>  'OrderController@notfound']);
+#3 Controller page
+   public function pagenotfound(){
+        return view('errors.503');
+    }
+#4 Edit Handler.php (App/Esception/Handler.php
+        public function render($request, Exception $exception)
+    {   
+        if($this->isHttpException($exception)){
+            switch($exception->getStatusCode())
+            {
+                case 404:
+                 return redirect()->route('notfound');
+                 break;
+                 case '500':
+                 return redirect()->route('notfound');
+                 default:
+                 return redirect()->route('notfound');
+                 break;
+            }
+        }
+       else {
+        return parent::render($request, $exception);
+        }
+    }
